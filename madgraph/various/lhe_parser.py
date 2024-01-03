@@ -18,17 +18,53 @@ from functools import reduce
 
 pjoin = os.path.join
 
+
+
+
 if '__main__' == __name__:
     import sys
     import os 
-    sys.path.append('../../')
+    sys.path.append('/u/user/seungjun/scratch/mg5amcnlo')
     root = os.path.dirname(__file__)
+    print(root)
     if os.path.basename(root) == 'internal':
             __package__ = "internal"
             sys.path.append(os.path.dirname(root))
             import internal
     else:
         __package__ = "madgraph.various"
+    from lhe_parser import EventFile
+
+
+    width_title = ["0_80em","0_90em","1_00em","1_10em","1_20em","1_30em", "1_32em", "1_40em", "1_50em","1_60em","1_70em","1_80em"]
+    #                 0        1        2         3       4       5         6        7         8         9       10        11
+    #width  = width_title[0]
+    
+    print("press the mode")
+    for i in range(len(width_title)):
+        line_print = width_title[i] + " : " + str(i)
+        print(line_print)
+    
+    x = input()
+    x = int(x)
+    
+    line_print = "You choose the "+ width_title[x]
+    print(line_print)
+    width = width_title[x]
+
+
+    folder_path = width_title[x]
+    #folder_path = "1_80em"
+    file_list = os.listdir(folder_path)
+    file_count = len(file_list) 
+    for i in range(file_count):
+        print_word = "Now it start spliting " + file_list[i]
+        print(print_word)
+        lhe_name="/u/user/seungjun/scratch/mg5amcnlo/madgraph/various/"+folder_path+"/"+file_list[i]
+        lhe_file=EventFile(lhe_name)
+        lhe_file.split(5000)
+        os.remove(lhe_name)
+   # def split(self, nb_event=0, partition=None, cwd=os.path.curdir, zip=False):
 
 try:
     import madgraph
@@ -681,7 +717,8 @@ class EventFile(object):
                                    (partition is None and i % nb_event == 0):
                 if i:
                     #close previous file
-                    current.write('</LesHouchesEvent>\n')
+                    current.write('</LesHouchesEvents>\n')
+                    #current.write('</LesHouchesEvent>\n')
                     current.close()
                 # create the new file
                 nb_file +=1
@@ -695,7 +732,8 @@ class EventFile(object):
                 current.write(self.banner)
             current.write(str(event))
         if i!=0:
-            current.write('</LesHouchesEvent>\n')
+            current.write('</LesHouchesEvents>\n')
+            #current.write('</LesHouchesEvent>\n')
             current.close()
              
         return nb_file +1
@@ -3313,7 +3351,8 @@ if '__main__' == __name__:
     
             #write this modify event
             output.write(str(event))
-        output.write('</LesHouchesEvent>\n')
+        output.write('</LesHouchesEvents>\n')
+        #output.write('</LesHouchesEvent>\n')
 
     # Example 2: heavy edition of the lhe file (replace one particle, adding on particle in the final state)
     if False: 
@@ -3349,7 +3388,8 @@ if '__main__' == __name__:
             #write this modify event
             output.write(str(event))
             #sys.exit(1)
-        output.write('</LesHouchesEvent>\n')
+        output.write('</LesHouchesEvents>\n')
+        #output.write('</LesHouchesEvent>\n')
 
 
 
