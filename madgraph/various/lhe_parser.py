@@ -60,7 +60,8 @@ if '__main__' == __name__:
     for i in range(file_count):
         print_word = "Now it start spliting " + file_list[i]
         print(print_word)
-        lhe_name="/u/user/seungjun/scratch/mg5amcnlo/madgraph/various/"+folder_path+"/"+file_list[i]
+        lhe_name="/cms/ldap_home/seungjun/nano/mg5amcnlo/madgraph/various/"+folder_path+"/"+file_list[i]
+        #lhe_name="/u/user/seungjun/scratch/mg5amcnlo/madgraph/various/"+folder_path+"/"+file_list[i]
         lhe_file=EventFile(lhe_name)
         lhe_file.split(5000)
         os.remove(lhe_name)
