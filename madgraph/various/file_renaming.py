@@ -19,7 +19,8 @@ width = width_title[x]
 
 
 
-whereisit ="/u/user/seungjun/SE_UserHome/lhe/"
+whereisit ="/cms/ldap_home/seungjun/nano/mg5amcnlo/madgraph/various/"
+#whereisit ="/u/user/seungjun/SE_UserHome/lhe/"
 #whereisit ="/u/user/seungjun/scratch/mg5amcnlo/madgraph/various/"
 folder_path = whereisit+width
 #folder_path = "1_80em"
